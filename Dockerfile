@@ -1,6 +1,7 @@
 FROM weaveworksdemos/msd-java:latest
 COPY . repo/
 WORKDIR repo
+RUN echo "ipv6" >> /etc/modules
 RUN apk add maven
 RUN mvn -DskipTests package
 WORKDIR /usr/src/app
