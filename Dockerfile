@@ -1,8 +1,7 @@
 FROM weaveworksdemos/msd-java:latest
 COPY . repo/
 WORKDIR repo
-RUN echo "ipv6" >> /etc/modules
-RUN apk add maven
+RUN apk add --update maven
 RUN mvn -DskipTests package
 WORKDIR /usr/src/app
 RUN cp /repo/target/*.jar ./app.jar
