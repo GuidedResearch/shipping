@@ -1,7 +1,7 @@
 FROM weaveworksdemos/msd-java:latest
 COPY . repo/
 WORKDIR repo
-RUN apk add --update maven
+RUN apk add --no-cache maven
 RUN mvn -DskipTests package
 WORKDIR /usr/src/app
 RUN cp /repo/target/*.jar ./app.jar
