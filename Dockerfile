@@ -1,4 +1,4 @@
-FROM weaveworksdemos/msd-java:latest
+FROM ubuntu:latest
 COPY . repo/
 WORKDIR repo
 RUN apk add --no-cache maven
