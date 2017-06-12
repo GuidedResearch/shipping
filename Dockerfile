@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 COPY . repo/
 WORKDIR repo
-RUN apk add --no-cache maven
+RUN apt-get update; apt-get install maven
 RUN mvn -DskipTests package
 WORKDIR /usr/src/app
 RUN cp /repo/target/*.jar ./app.jar
