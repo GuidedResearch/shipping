@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 COPY . repo/
 WORKDIR repo
-RUN apt-get update; apt-get -y install maven; apt-get install openjdk-8-jdk
+RUN apt-get update; apt-get -y install maven; apt-get -y install openjdk-8-jdk
 RUN mvn -DskipTests package
 WORKDIR /usr/src/app
 RUN cp /repo/target/*.jar ./app.jar
