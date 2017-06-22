@@ -25,4 +25,4 @@ LABEL org.label-schema.vendor="Weaveworks" \
   org.label-schema.schema-version="1.0"
 
 ENV JAVA_OPTS "-Djava.security.egd=file:/dev/urandom"
-ENTRYPOINT ["/usr/local/bin/java.sh","-jar","./app.jar", "--port=80"]
+ENTRYPOINT ["/usr/local/bin/java","-jar","./app.jar", "--port=80"]
