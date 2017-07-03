@@ -19,18 +19,32 @@ import java.util.Map;
 
 @RestController
 public class ShippingController {
-
-    @Autowired
+	
+	private static int sleep = 0;
+    
+	@Autowired
     RabbitTemplate rabbitTemplate;
 
     @RequestMapping(value = "/shipping", method = RequestMethod.GET)
     public String getShipping() {
+    	try {
+			Thread.sleep(sleep);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         return "GET ALL Shipping Resource.";
     }
 
     @RequestMapping(value = "/shipping/{id}", method = RequestMethod.GET)
     public String getShippingById(@PathVariable String id) {
-        return "GET Shipping Resource with id: " + id;
+    	try {
+			Thread.sleep(sleep);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return "GET Shipping Resource with id: " + id;
     }
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -38,7 +52,13 @@ public class ShippingController {
     public
     @ResponseBody
     Shipment postShipping(@RequestBody Shipment shipment) {
-        System.out.println("Adding shipment to queue...");
+    	try {
+			Thread.sleep(sleep);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	System.out.println("Adding shipment to queue...");
         try {
             rabbitTemplate.convertAndSend("shipping-task", shipment);
         } catch (Exception e) {
@@ -53,7 +73,13 @@ public class ShippingController {
     public
     @ResponseBody
     Map<String, List<HealthCheck>> getHealth() {
-        Map<String, List<HealthCheck>> map = new HashMap<String, List<HealthCheck>>();
+    	try {
+			Thread.sleep(sleep);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	Map<String, List<HealthCheck>> map = new HashMap<String, List<HealthCheck>>();
         List<HealthCheck> healthChecks = new ArrayList<HealthCheck>();
         Date dateNow = Calendar.getInstance().getTime();
 
@@ -77,5 +103,12 @@ public class ShippingController {
 
         map.put("health", healthChecks);
         return map;
+    }
+    
+    @RequestMapping(value = "/sleep/{sleep}", method = RequestMethod.GET)
+    public boolean setSleep(@PathVariable int sleep) {
+    	this.sleep = sleep;
+    	return true;
+    
     }
 }
