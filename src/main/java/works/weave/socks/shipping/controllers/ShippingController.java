@@ -106,9 +106,10 @@ public class ShippingController {
     }
     
     @RequestMapping(value = "/sleep/{sleep}", method = RequestMethod.GET)
-    public boolean setSleep(@PathVariable int sleep) {
+    public int setSleep(@PathVariable int sleep) {
+    	int oldSleep = this.sleep;
     	this.sleep = sleep;
-    	return true;
+    	return oldSleep;
     
     }
 }
