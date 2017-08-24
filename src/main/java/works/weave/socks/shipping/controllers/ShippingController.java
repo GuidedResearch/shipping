@@ -81,12 +81,6 @@ public class ShippingController {
 	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping(method = RequestMethod.GET, path = "/health")
 	public @ResponseBody Map<String, List<HealthCheck>> getHealth() {
-		try {
-			Thread.sleep(this.getSleep());
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		Map<String, List<HealthCheck>> map = new HashMap<String, List<HealthCheck>>();
 		List<HealthCheck> healthChecks = new ArrayList<HealthCheck>();
 		Date dateNow = Calendar.getInstance().getTime();
@@ -123,7 +117,7 @@ public class ShippingController {
 	private int getSleep() {
 		URLConnection conn;
 		try {
-			conn = new URL("http://tobias-angerstein.de/sleep").openConnection();
+			conn = new URL("http://tobias-angerstein.de/sleep/shipping").openConnection();
 			conn.connect();
 
 			try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
